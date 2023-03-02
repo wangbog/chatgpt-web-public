@@ -22,7 +22,7 @@
 作者已经将`chatgpt`打包成镜像，可以直接使用`docker`部署。
 
 ```bash
-docker run --name chatgpt -d -p 8000:8000 -e API_KEY=xxxxxx miclon/chatgpt:latest
+docker run --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx miclon/chatgpt:latest
 ```
 
 ### 2. 本地部署
@@ -53,15 +53,6 @@ pnpm run dev
 cd api
 python app.py
 ```
-
-## 如果你不想动手
-
-笔者自建了微信公众号：**代码领悟**，您关注后即可直接与AI对话。
-
-公众号搭建chatGPT搭建流程图：
-
-![](https://miclon-job.oss-cn-hangzhou.aliyuncs.com/img/20230210220109.png)
-
 
 ## 答疑
 
