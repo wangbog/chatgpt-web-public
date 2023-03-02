@@ -11,6 +11,12 @@
 docker run --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
 ```
 
+在armbian上运行：首先安装`tonistiigi/binfmt`，它其实是个模拟器，可以支持在aarch64/arm64架构的平台上运行amd64或其他架构的docker image，rm参数代表运行完就清理掉环境（它其实是向宿主机安装了相关的依赖）。然后再运行我们的docker image就可以了，运行时指定了platform为amd64，也就是用模拟器运行amd64的docker image。
+```bash
+docker run --privileged --rm tonistiigi/binfmt --install amd64
+docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
+```
+
 ### 2. 本地部署
 
 - 拉取项目，安装依赖
