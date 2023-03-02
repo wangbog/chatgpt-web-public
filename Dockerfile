@@ -1,4 +1,4 @@
-FROM amywoodehy/py-nodejs
+FROM registry.cn-hangzhou.aliyuncs.com/miclon/py-nodejs:latest
 
 WORKDIR /app
 # Install app dependencies
