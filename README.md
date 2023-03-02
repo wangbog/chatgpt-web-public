@@ -1,20 +1,6 @@
 ## ChatGPT-WEB
 
-![](https://miclon-job.oss-cn-hangzhou.aliyuncs.com/img/20230220111309.png)
-
-注意：图中的余额指的是`chatgpt`中`API_KEY`的余额。
-
 本项目为`chatgpt`私有化部署，基于`fastapi` `vue3` `chatgpt api`实现。
-
-
-
-- [笔者案例 - 我用AI帮我完成了单子](https://52caiji.com/posts/other/developer-use-openai.html)
-
-## 更新日志：
-02-20：支持了API的**连续对话**
-
-02-15：前端可以自定义`API_KEY`，优先级大于后端自定义的`API_KEY`。
-
 
 ## 快速开始
 
@@ -22,7 +8,7 @@
 作者已经将`chatgpt`打包成镜像，可以直接使用`docker`部署。
 
 ```bash
-docker run --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx miclon/chatgpt:latest
+docker run --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
 ```
 
 ### 2. 本地部署

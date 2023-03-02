@@ -2,7 +2,7 @@
 name = "api"
 version = "0.1.0"
 description = ""
-authors = ["miclon <jcnd@163.com>"]
+authors = ["wangbo <2098321@qq.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
