@@ -17,6 +17,11 @@ docker run --privileged --rm tonistiigi/binfmt --install amd64
 docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
 ```
 
+OpenAI的API有可能需要代理才能访问，那就把代理作为环境变量也传进来：
+```bash
+docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx -e https_proxy=http://127.0.0.1:7890 -e http_proxy=http://127.0.0.1:7890 -e all_proxy=socks5://127.0.0.1:7890 wangbog/chatgpt-web:latest
+```
+
 ### 2. 本地部署
 
 - 拉取项目，安装依赖
