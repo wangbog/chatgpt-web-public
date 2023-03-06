@@ -8,18 +8,18 @@
 作者已经将`chatgpt`打包成镜像，可以直接使用`docker`部署。
 
 ```bash
-docker run --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
+docker run --name chatgpt -d -p 8020:8020 -e API_KEY=sk-xxxx wangbog/chatgpt-web:latest
 ```
 
 在armbian上运行：首先安装`tonistiigi/binfmt`，它其实是个模拟器，可以支持在aarch64/arm64架构的平台上运行amd64或其他架构的docker image，rm参数代表运行完就清理掉环境（它其实是向宿主机安装了相关的依赖）。然后再运行我们的docker image就可以了，运行时指定了platform为amd64，也就是用模拟器运行amd64的docker image。
 ```bash
 docker run --privileged --rm tonistiigi/binfmt --install amd64
-docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx wangbog/chatgpt-web:latest
+docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=sk-xxxx wangbog/chatgpt-web:latest
 ```
 
 OpenAI的API有可能需要代理才能访问，那就把代理作为环境变量也传进来：
 ```bash
-docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxxxx -e https_proxy=http://127.0.0.1:7890 -e http_proxy=http://127.0.0.1:7890 -e all_proxy=socks5://127.0.0.1:7890 wangbog/chatgpt-web:latest
+docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=sk-xxxx -e https_proxy=http://127.0.0.1:7890 -e http_proxy=http://127.0.0.1:7890 -e all_proxy=socks5://127.0.0.1:7890 wangbog/chatgpt-web:latest
 ```
 
 ### 2. 本地部署
@@ -29,9 +29,11 @@ docker run --platform linux/amd64 --name chatgpt -d -p 8020:8020 -e API_KEY=xxxx
 ```bash
 cd web
 pnpm install
+pnpm run build
 ```
 
 ```bash
+cp -r web/dist api/dist
 cd api
 pip install -r requirements.txt
 ```
