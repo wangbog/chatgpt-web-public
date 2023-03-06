@@ -3,11 +3,6 @@ import os
 import httpx
 
 API_KEY = os.environ.get('API_KEY')
-if proxy := os.environ.get('HTTPS_PROXY'):
-    PROXIES = {"https://": proxy}
-else:
-    PROXIES = None
-
 
 def check_api_key(func):
     def wrapper(*args, **kwargs):
@@ -26,7 +21,7 @@ def check_api_key(func):
 async def completions(message, api_key=None):
     """Get completions for the message."""
     url = "https://api.openai.com/v1/completions"
-    async with httpx.AsyncClient(proxies=PROXIES) as client:
+    async with httpx.AsyncClient() as client:
         response = await client.post(
             url,
             json=message.dict(),
@@ -40,7 +35,7 @@ async def completions(message, api_key=None):
 async def completions_turbo(message, api_key=None):
     """Get completions for the message."""
     url = "https://api.openai.com/v1/chat/completions"
-    async with httpx.AsyncClient(proxies=PROXIES) as client:
+    async with httpx.AsyncClient() as client:
         response = await client.post(
             url,
             json=message.dict(),
@@ -54,7 +49,7 @@ async def completions_turbo(message, api_key=None):
 async def credit_summary(api_key=None):
     """Get the credit summary for the API key."""
     url = "https://api.openai.com/dashboard/billing/credit_grants"
-    async with httpx.AsyncClient(proxies=PROXIES) as client:
+    async with httpx.AsyncClient() as client:
         response = await client.get(
             url,
             headers={"Authorization": f"Bearer {api_key}"},

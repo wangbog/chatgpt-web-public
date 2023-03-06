@@ -75,7 +75,7 @@ const refushCredit = async () => {
   state.loadding = false
 }
 const handleToGithub = () => {
-  window.open('https://github.com/mic1on/chatGPT-web')
+  window.open('https://github.com/wangbog/chatgpt-web')
 }
 
 onMounted(async () => {
